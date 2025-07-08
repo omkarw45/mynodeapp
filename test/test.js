@@ -1,18 +1,11 @@
 const request = require('supertest');
+const app = require('../index');
 
-const app = require('../index.js'); // Adjust if your app filename is app.js
-
-
-describe('GET /nonexistentpage', function() {
-
-  it('should respond with 404 Not Found', function(done) {
-
+describe('GET /', () => {
+  it('should return Hello from Nodejs App', (done) => {
     request(app)
-
-      .get('/nonexistentpage')
-
-      .expect(404, done); // This is a cleaner way to end test if only checking status
-
+      .get('/')
+      .expect(200)
+      .expect('Hello from Nodejs App', done);
   });
-
 });
